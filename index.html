@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App Vue.js @andreshare</title>
+    
+</head>
+<body>
+
+<div id="main">
+    <ul>
+        <li v-for=" item in people" v-text="item"> {{item}}</li>
+    </ul>
+
+    <input name="" v-model="name" v-on:keyup.enter="addName">
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.8/vue.js"></script>
+<script>
+    new Vue({
+        el:'#main',
+        data: {
+            people:['laura','natalia','paola','samara']
+        
+        },
+        name:'',
+        methods:{
+           addName: function(){
+               this.people.push(this.name);
+               this.name="";
+           }
+        }
+    });
+</script>
+
+</body>
+</html>
