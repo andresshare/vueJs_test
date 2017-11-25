@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>App Vue.js theme:ajax @andreshare</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <div class="container" id="main">
+        <div class="row">
+            <div class="col-sm-4">
+                <h1>list from AJAX</h1>
+                <ul class="list-group">
+                    <li v-for="item in lists" class="list-group-item">
+                        {{item.name.first}}{{item.name.last}}
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-sm-8">
+                <h1>Json</h1>
+                <pre>
+                 {{ $data | json}}
+                </pre>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.8/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+
+    <script>
+        var urlUsers = 'https://jsonplaceholder.typicode.com/users';
+
+        new Vue({
+            el: '#main',
+
+            created: function () {
+                this.getUsers();
+            },
+
+            data: {
+                lists: []
+            },
+
+            methods: {
+                getUsers: function () {
+                    axios.get(urlUsers).then(response=>{
+                        this.lists =response.data
+                    
+                    });
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
